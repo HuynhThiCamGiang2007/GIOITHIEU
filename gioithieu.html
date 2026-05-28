@@ -1,0 +1,405 @@
+﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gioi Thieu - Huỳnh Thị Cẩm Giang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(160deg, #fce4ec, #f8bbd0, #e1bee7, #fce4ec);
+      background-size: 400% 400%;
+      animation: bgShift 12s ease infinite;
+      font-family: 'Nunito', sans-serif;
+      color: #4a2040;
+      min-height: 100vh;
+    }
+
+    @keyframes bgShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* FLOATING HEARTS */
+    .hearts { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0; }
+    .heart { position:absolute; bottom:-40px; opacity:0; animation: floatUp 9s ease-in infinite; }
+    @keyframes floatUp {
+      0%   { opacity:0; transform:translateY(0) scale(0.8); }
+      10%  { opacity:0.5; }
+      90%  { opacity:0.15; }
+      100% { opacity:0; transform:translateY(-100vh) scale(1.3); }
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 50px 20px 60px;
+    }
+
+    /* HERO CARD */
+    .hero-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(14px);
+      border: 2px solid #f48fb1;
+      border-radius: 32px;
+      padding: 48px 40px 40px;
+      box-shadow: 0 12px 40px rgba(240,98,146,0.2);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .avatar-wrap {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f06292, #ce93d8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      box-shadow: 0 6px 24px rgba(240,98,146,0.35);
+    }
+
+    .name {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.6rem;
+      color: #880e4f;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #ad1457;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #f06292, #ce93d8);
+      border-radius: 10px;
+      margin: 18px auto;
+    }
+
+    /* INFO CARDS */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 540px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .hero-card { padding: 36px 24px 32px; }
+      .name { font-size: 2rem; }
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #f48fb1;
+      border-radius: 20px;
+      padding: 20px 22px;
+      box-shadow: 0 4px 16px rgba(240,98,146,0.12);
+    }
+
+    .info-card h3 {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #e91e8c;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+    }
+
+    .info-row:last-child { margin-bottom: 0; }
+
+    .info-icon {
+      font-size: 1.1rem;
+      min-width: 22px;
+      text-align: center;
+    }
+
+    .info-label {
+      color: #ad1457;
+      font-weight: 700;
+      min-width: 90px;
+    }
+
+    .info-value {
+      color: #4a2040;
+      font-weight: 600;
+    }
+
+    /* ABOUT CARD */
+    .about-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #f48fb1;
+      border-radius: 20px;
+      padding: 24px 26px;
+      box-shadow: 0 4px 16px rgba(240,98,146,0.12);
+      margin-bottom: 28px;
+    }
+
+    .about-card h3 {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #e91e8c;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+
+    .about-card p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #5d2a4a;
+    }
+
+    /* SKILLS */
+    .skills-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #f48fb1;
+      border-radius: 20px;
+      padding: 24px 26px;
+      box-shadow: 0 4px 16px rgba(240,98,146,0.12);
+      margin-bottom: 28px;
+    }
+
+    .skills-card h3 {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #e91e8c;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+
+    .skill-item { margin-bottom: 12px; }
+    .skill-item:last-child { margin-bottom: 0; }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #880e4f;
+      margin-bottom: 5px;
+    }
+
+    .skill-bar {
+      height: 8px;
+      background: #fce4ec;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #f06292, #ce93d8);
+      animation: fillBar 1.2s ease forwards;
+      width: 0;
+    }
+
+    @keyframes fillBar {
+      to { width: var(--w); }
+    }
+
+    /* HOBBIES */
+    .hobbies-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #f48fb1;
+      border-radius: 20px;
+      padding: 24px 26px;
+      box-shadow: 0 4px 16px rgba(240,98,146,0.12);
+    }
+
+    .hobbies-card h3 {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #e91e8c;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+
+    .hobby-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      border: 1.5px solid #f06292;
+      color: #880e4f;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      margin-top: 36px;
+      font-size: 0.85rem;
+      color: #ad1457;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero-card">
+    <div class="avatar-wrap">&#x1F338;</div>
+    <div class="name">Hu&#x1ef3;nh Th&#x1ecb; C&#x1ea9;m Giang</div>
+    <div class="tagline">&#x2728; Sinh vi&#xea;n &#x2022; Y&#xea;u ngh&#x1ec1; &#x2022; N&#x1ed7; l&#x1ef1;c m&#x1ed7;i ng&#xe0;y &#x2728;</div>
+    <div class="divider"></div>
+    <p style="font-size:0.95rem;color:#5d2a4a;font-weight:600;">
+      Xin ch&#xe0;o! M&#xec;nh l&#xe0; C&#x1ea9;m Giang &#x1f338; &#x2014; m&#x1ed9;t sinh vi&#xea;n Đam mê học hỏi v&#xe0; lu&#xf4;n c&#x1ed1; g&#x1eafng t&#x1eeb;ng ng&#xe0;y.
+    </p>
+  </div>
+
+  <!-- INFO GRID -->
+  <div class="info-grid">
+
+    <div class="info-card">
+      <h3>&#x1f4cb; Th&#xf4;ng tin c&#xe1; nh&#xe2;n</h3>
+      <div class="info-row">
+        <span class="info-icon">&#x1f464;</span>
+        <span class="info-label">H&#x1ecd; t&#xea;n:</span>
+        <span class="info-value">Hu&#x1ef3;nh Th&#x1ecb; C&#x1ea9;m Giang</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">&#x1f382;</span>
+        <span class="info-label">Ng&#xe0;y sinh:</span>
+        <span class="info-value">06/06/2007</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">&#x1f4cd;</span>
+        <span class="info-label">Qu&#xea; qu&#xe1;n:</span>
+        <span class="info-value">Vi&#x1ec7;t Nam</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">&#x2764;&#xfe0f;</span>
+        <span class="info-label">Gi&#x1edbi t&#xed;nh:</span>
+        <span class="info-value">N&#x1eef;</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>&#x1f393; Học vấn</h3>
+      <div class="info-row">
+        <span class="info-icon">&#x1f3eb;</span>
+        <span class="info-label">Trường:</span>
+        <span class="info-value">Đại học Trà Vinh</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">&#x1f4da;</span>
+        <span class="info-label">Ng&#xe0;nh:</span>
+        <span class="info-value">C&#xf4;ng ngh&#x1ec7; th&#xf4;ng tin</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">&#x1f4c5;</span>
+        <span class="info-label">Kh&#xf3;a:</span>
+        <span class="info-value">2025 &#x2014; 2029</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-card">
+    <h3>&#x1f4ac; V&#xe0;i n&#xe9;t v&#x1ec1; m&#xec;nh</h3>
+    <p>
+      Mình là Huỳnh Thị Cẩm Giang, hiện đang là sinh viên năm nhất tại Trường Đại học Trà Vinh.
+      Mình yêu thích khám phá công nghệ, thiết kế giao diện và luôn cố gắng học hỏi những điều mới mẻ.
+      Ngoài giờ học, mình thích nghe nhạc, đọc sách và dành thời gian cho những người thân yêu.
+      Mục tiêu của mình là trở thành một lập trình viên giỏi, có ích cho xã hội và luôn giữ cho mình một tâm hồn tích cực.
+    </p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-card">
+    <h3>&#x1f4bb; K&#x1ef9; n&#x103;ng</h3>
+    <div class="skill-item">
+      <div class="skill-top"><span>HTML / CSS</span><span>80%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-top"><span>JavaScript</span><span>60%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:60%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-top"><span>Microsoft Office</span><span>85%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-top"><span>Ti&#x1ebfng Anh</span><span>65%</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:65%"></div></div>
+    </div>
+  </div>
+
+  <!-- HOBBIES -->
+  <div class="hobbies-card">
+    <h3>&#x1f338; S&#x1edf; th&#xed;ch</h3>
+    <div class="hobby-tags">
+      <span class="tag">&#x1f3b5; Nghe nh&#x1ea1;c</span>
+      <span class="tag">&#x1f4f8; Ch&#x1ee5;p &#x1ea3;nh</span>
+      <span class="tag">&#x1f4da; &#x110;&#x1ecdc s&#xe1;ch</span>
+      <span class="tag">&#x1f373; N&#x1ea5;u &#x103;n</span>
+      <span class="tag">&#x1f5a5;&#xfe0f; L&#x1eadp tr&#xec;nh</span>
+      <span class="tag">&#x1f33a; D&#xe3;o ch&#x1ee9i</span>
+      <span class="tag">&#x1f3a8; Thi&#x1ebft k&#x1ebf;</span>
+    </div>
+  </div>
+
+  <div class="footer">Made with &#x1f49c; by C&#x1ea9;m Giang &nbsp;&#x1f338;</div>
+
+</div>
+
+<script>
+  const heartsEl = document.getElementById('hearts');
+  const icons = ['&#x1f338;','&#x1f337;','&#x1f49c;','&#x1f497;','&#x2728;','&#x1f380;','&#x1f49d;','&#x1f496;'];
+  for (let i = 0; i < 20; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart';
+    h.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    h.style.left = Math.random() * 100 + '%';
+    h.style.animationDelay = Math.random() * 9 + 's';
+    h.style.animationDuration = (7 + Math.random() * 6) + 's';
+    h.style.fontSize = (0.9 + Math.random() * 1.1) + 'rem';
+    heartsEl.appendChild(h);
+  }
+</script>
+</body>
+</html>
